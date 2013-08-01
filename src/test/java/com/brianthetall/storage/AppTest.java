@@ -1,34 +1,28 @@
 package com.brianthetall.storage;
 
-//import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import org.junit.Assert;
 
 /**
- * Unit test for simple App.
+ * Unit test for SimpleDrive
+ * JUnit4
  */
-public class AppTest 
-    extends TestCase
-{
+public class AppTest {
 
-    @Test
-    public void testApp()
-    {
-	
-        assertTrue( true );
-    }
-
+    private SimpleDrive sd;
+    
     @Before
-    public void testSetup(){
+    public void beforeSetup(){
 	System.out.println("setup");
+	sd=new SimpleDrive("token,,,use DI?");
     }
 
     @After
     public void testUnsetup(){
 	System.out.println("unsetup");
+	sd=null;
     }
 
     @Test
@@ -69,24 +63,5 @@ public class AppTest
     
     @Test
     public void testDelete(){}
-
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static junit.framework.Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
     
 }
