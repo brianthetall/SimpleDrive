@@ -50,6 +50,9 @@ public class SimpleDrive{
 
     private Drive drive;
 
+    /**
+     * @param token Google issued OAuth token
+     */
     public SimpleDrive(String token){
 	
 	NetHttpTransport transport = new NetHttpTransport();
@@ -60,7 +63,7 @@ public class SimpleDrive{
 	credential.setAccessToken(token);
 	System.out.println("JSON CRED w/ Token:"+g.toJson(credential));
 
-	try{
+	try{//GET USER EMAIL
 	    Oauth2 userInfoService = new Oauth2.Builder(new NetHttpTransport(), new JacksonFactory(), credential).setApplicationName("GLUnet").build();
 	    Userinfo userinfo =  userInfoService.userinfo().get().execute();
 	    //	    System.out.println(userinfo.getEmail());
@@ -68,21 +71,11 @@ public class SimpleDrive{
 	    System.out.println("AuthServiceError:SimpleDrive");
 	}
 
-	try{
+	try{//BUILD DRIVE OBJECT-USING CREDENTIAL
 	    drive = new Drive.Builder(new NetHttpTransport(),new JacksonFactory(),credential).setApplicationName("GLUnet").build();
 	    if(drive == null)
 		System.out.println("Error building drive");
-	    /*
-	    else{
-		String[] fileList = ls();
-		for(int i=0;i<fileList.length;i++)
-		    System.out.println(fileList[i]);
 
-		ArrayList<Permission> permResults =  lsPermissions(retrieveAllFiles());
-		for(int i=0;i<permResults.size();i++)
-		    System.out.println("i="+i+" Type:"+permResults.get(i).getType()+" Role:"+permResults.get(i).getRole()+" Name:"+permResults.get(i).getName());
-		
-		    }*/
 	}catch(Exception e){
 	    System.out.println(e.getMessage()+"Error building Drive");
 	}
