@@ -13,6 +13,8 @@ import java.util.Enumeration;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
 import java.io.PrintWriter;
 import java.lang.String;
 import com.google.api.client.http.GenericUrl;
@@ -99,6 +101,15 @@ public class SimpleDrive{
 	return false;
     }
     
+    //NEED JUnit Test for THIS!
+    public Map<String,String> lsDownloadMap(){
+	List<File> listOfFiles = retrieveAllFiles();
+	Map<String,String> retval=new LinkedHashMap<>(listOfFiles.size()*2);//big map,quick map
+	for(int i=0;i<listOfFiles.size();i++)
+	    retval.put(listOfFiles.get(i).getId(), listOfFiles.get(i).getTitle());
+	return retval;
+    }
+
     public String[] lsDownloadLinks(){
 
 	List<File> listOfFiles = retrieveAllFiles();
