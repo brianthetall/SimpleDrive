@@ -65,6 +65,7 @@ public class SimpleDrive{
 	credential.setAccessToken(token);
 	System.out.println("JSON CRED w/ Token:"+g.toJson(credential));
 
+	/*
 	try{//GET USER EMAIL
 	    Oauth2 userInfoService = new Oauth2.Builder(new NetHttpTransport(), new JacksonFactory(), credential).setApplicationName("GLUnet").build();
 	    Userinfo userinfo =  userInfoService.userinfo().get().execute();
@@ -72,6 +73,7 @@ public class SimpleDrive{
 	}catch(Exception e){
 	    System.out.println("AuthServiceError:SimpleDrive");
 	}
+	*/
 
 	try{//BUILD DRIVE OBJECT-USING CREDENTIAL
 	    drive = new Drive.Builder(new NetHttpTransport(),new JacksonFactory(),credential).setApplicationName("GLUnet").build();
